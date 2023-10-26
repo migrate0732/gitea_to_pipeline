@@ -1,0 +1,32 @@
+version: 0.0
+os: ubuntu
+
+files:
+  - source: /
+    destination: /var/www/html
+
+hooks:
+  
+  BeforeInstall:
+    - location: scripts/install_dependencies.sh
+
+  
+  AfterInstall:
+    - location: scripts/build_application.sh
+
+  
+  ApplicationStart:
+    - location: scripts/start_application.sh
+
+ 
+  ValidateService:
+    - location: scripts/validate_deployment.sh
+
+permissions:
+  - object: /var/www/html
+    pattern: "**"
+    owner: www-data
+    group: www-data
+
+
+

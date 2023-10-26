@@ -1,0 +1,33 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+    commands:
+      - npm install -g typescript
+      - npm install
+
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+
+  build:
+    commands:
+      - echo Build started on `date`
+      
+      - npm run build
+      - npm install sweetalert2
+      - npm install bootstrap@3.3.7
+      - npm install -g @angular/cli
+      - ng build --prod 
+      
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      
+artifacts:
+  files:
+    - '**/*'
+ 
+

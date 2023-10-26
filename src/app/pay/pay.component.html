@@ -1,0 +1,67 @@
+<div class="box">
+
+    <div class="head">
+
+        <i class="fa fa-arrow-left"></i>
+
+        
+        <img src="https://www.pngitem.com/pimgs/m/526-5267999_letter-a-png-letter-a-clear-background-transparent.png" alt="Loading">
+        <div class="title">
+            <p class="name">Abhishek Gupta</p>
+            <p class="number">+91 9833123321</p>
+        </div>
+
+    </div >
+    <div *ngFor="let info of data">
+    <p class="date" style="margin-top: 10px;">..................................................................................................................{{info.date}}...............................................................................................................................</p>
+    <div class="payment container" 
+    [ngClass]="info.transactionDirection==='sent' && (info.transactionType==='pay' || info.transactionType ==='collect' ) ? 'float-right': 'float-left' ">
+
+        <div class="amount">
+            <h2 style="font-size: 45px;">{{info.amount}}</h2>
+            <p 
+            *ngIf="info.transactionType==='pay' && (info.transactionDirection==='received' || info.transactionDirection==='sent')"
+            >
+                transaction Id
+                <br>
+                {{info.transactionId}}
+            </p>
+            <button type="button" class="btn btn-light"
+             *ngIf="info.transactionType ==='collect' && info.transactionDirection==='sent'"
+             >Cancel</button>
+
+
+             <div class="btnAction">
+
+                <button type="button" class="btn btn-light"
+                *ngIf="info.transactionType ==='collect' && info.transactionDirection==='received'"
+                >Pay</button>
+
+                <button type="button" class="btn btn-light" 
+             *ngIf="info.transactionType ==='collect' && info.transactionDirection==='received'"
+             >Decline</button>
+
+             </div>
+
+        </div>
+
+        <div class="action">
+            <p style="font-size: 20px; margin-left: 30%; ;">
+                <i class="fa fa-check" style="color: green; font-size: 15px;"></i>
+                    You paid
+            </p>
+            <br>
+            <a href="#" style="margin-left: 80%; padding-top: 45px;"><i class="fa fa-angle-right" style="font-size: x-large;"></i></a>
+        </div>
+        
+    </div>
+    <div class="date " style=" margin-right: 20px;text-align: right;">
+            {{info.date}}
+       
+    </div>
+</div>
+
+</div>
+<button class="btns btn-danger" style="margin-left: 50px; 
+                                        width: 20%;
+                                         margin-bottom: 50px;" (click)="isLoggedOut()">Logout</button>
